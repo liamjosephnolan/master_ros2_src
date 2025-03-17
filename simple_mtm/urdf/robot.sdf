@@ -1,0 +1,330 @@
+<sdf version="1.7">
+  <model name="simple_mtm">
+    <link name="base_link">
+      <inertial>
+        <pose>0 0.12112 -0.033194 0 -0 0</pose>
+        <mass>1.10121</mass>
+        <inertia>
+          <ixx>0.00778947</ixx>
+          <ixy>-7.15589e-15</ixy>
+          <ixz>1.5509e-14</ixz>
+          <iyy>0.00283497</iyy>
+          <iyz>6.01985e-07</iyz>
+          <izz>0.00613139</izz>
+        </inertia>
+      </inertial>
+      <collision name="base_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="base_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="shoulder_joint" type="revolute">
+      <pose relative_to="base_link">0 0.215289 0.285 -1.5708 0 0</pose>
+      <parent>base_link</parent>
+      <child>shoulder_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="shoulder_link">
+      <pose relative_to="shoulder_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.027247 -0.004312 0.015329 0 -0 0</pose>
+        <mass>0.217265</mass>
+        <inertia>
+          <ixx>8.82897e-05</ixx>
+          <ixy>-5.23752e-06</ixy>
+          <ixz>4.84631e-07</ixz>
+          <iyy>9.88338e-05</iyy>
+          <iyz>3.16059e-07</iyz>
+          <izz>0.000161818</izz>
+        </inertia>
+      </inertial>
+      <collision name="shoulder_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/shoulder_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="shoulder_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/shoulder_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="upper_joint" type="revolute">
+      <pose relative_to="shoulder_link">0.045 0 0.011711 3.14159 -0 0</pose>
+      <parent>shoulder_link</parent>
+      <child>upper_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="upper_link">
+      <pose relative_to="upper_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.113474 0 -0.001078 0 -0 0</pose>
+        <mass>0.0284426</mass>
+        <inertia>
+          <ixx>2.23414e-06</ixx>
+          <ixy>-3.63778e-11</ixy>
+          <ixz>-8.63056e-08</ixz>
+          <iyy>2.11947e-05</iyy>
+          <iyz>1.95087e-13</iyz>
+          <izz>2.1832e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name="upper_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/upper_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="upper_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/upper_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="lower_join" type="revolute">
+      <pose relative_to="upper_link">0.2175 0 0 1.5708 0 -1.5708</pose>
+      <parent>upper_link</parent>
+      <child>lower_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="lower_link">
+      <pose relative_to="lower_join">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.084875 0.017179 -0 0 -0 0</pose>
+        <mass>0.0161822</mass>
+        <inertia>
+          <ixx>8.18067e-07</ixx>
+          <ixy>-7.4672e-08</ixy>
+          <ixz>6.48271e-14</ixz>
+          <iyy>1.99214e-05</iyy>
+          <iyz>3.23675e-14</iyz>
+          <izz>1.99376e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name="lower_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/lower_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="lower_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/lower_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="gimbal_joint" type="revolute">
+      <pose relative_to="lower_link">0.2175 -0.00995 0 1.5708 -0 1.5708</pose>
+      <parent>lower_link</parent>
+      <child>gimbal_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="gimbal_link">
+      <pose relative_to="gimbal_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.032611 -0.000282 -4.6e-05 0 -0 0</pose>
+        <mass>0.0212066</mass>
+        <inertia>
+          <ixx>1.4925e-06</ixx>
+          <ixy>-3.24208e-08</ixy>
+          <ixz>-7.51136e-09</ixz>
+          <iyy>2.56063e-06</iyy>
+          <iyz>-7.29236e-09</iyz>
+          <izz>2.89424e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name="gimbal_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/gimbal_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="gimbal_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/gimbal_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="left_lever_joint" type="revolute">
+      <pose relative_to="gimbal_link">-0.059399 -0.0075 0 3.14159 0 0.279253</pose>
+      <parent>gimbal_link</parent>
+      <child>left_lever_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="left_lever_link">
+      <pose relative_to="left_lever_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.013756 0.012876 -0 0 -0 0</pose>
+        <mass>0.00212674</mass>
+        <inertia>
+          <ixx>3.06036e-07</ixx>
+          <ixy>-3.30078e-07</ixy>
+          <ixz>-2.03259e-12</ixz>
+          <iyy>4.36135e-07</iyy>
+          <iyz>-2.80092e-12</iyz>
+          <izz>7.1802e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name="left_lever_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/left_lever_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="left_lever_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/left_lever_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="right_lever_joint" type="revolute">
+      <pose relative_to="gimbal_link">-0.059399 0.0075 0 0 0 -0.279253</pose>
+      <parent>gimbal_link</parent>
+      <child>right_lever_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="right_lever_link">
+      <pose relative_to="right_lever_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.013756 0.012876 -0 0 -0 0</pose>
+        <mass>0.00212674</mass>
+        <inertia>
+          <ixx>3.06036e-07</ixx>
+          <ixy>-3.30078e-07</ixy>
+          <ixz>-2.03259e-12</ixz>
+          <iyy>4.36135e-07</iyy>
+          <iyz>-2.80092e-12</iyz>
+          <izz>7.1802e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_lever_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/right_lever_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="right_lever_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://simple_mtm/meshes/visual/right_lever_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

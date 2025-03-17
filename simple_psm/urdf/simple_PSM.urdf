@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="simple_PSM">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-3.09539441324051E-06 0.0862866713676025 -0.0699252771933744"
+        rpy="0 0 0" />
+      <mass
+        value="2.08418913267452" />
+      <inertia
+        ixx="0.0128141035363538"
+        ixy="1.93105392495048E-07"
+        ixz="-3.28129199284356E-08"
+        iyy="0.0117487023082668"
+        iyz="-2.76942421209081E-06"
+        izz="0.00436365103494065" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="roller_link">
+    <inertial>
+      <origin
+        xyz="-0.0415500174059238 0.00364021977063638 0.0160546970531957"
+        rpy="0 0 0" />
+      <mass
+        value="0.874973515338156" />
+      <inertia
+        ixx="0.00170995693555088"
+        ixy="-1.76480636521543E-06"
+        ixz="1.76187251165926E-06"
+        iyy="0.00154081427626136"
+        iyz="4.31193798285415E-06"
+        izz="0.00212538475249572" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/roller_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/roller_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="roller_joint"
+    type="continuous">
+    <origin
+      xyz="0 0 0.2733"
+      rpy="3.1416 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="roller_link" />
+    <axis
+      xyz="-1 0 0" />
+  </joint>
+  <link
+    name="long_link">
+    <inertial>
+      <origin
+        xyz="0.0264610779209657 0.108425307572703 0.002999999999352"
+        rpy="0 0 0" />
+      <mass
+        value="0.208754094571234" />
+      <inertia
+        ixx="0.000719637057303172"
+        ixy="-0.000227238198725603"
+        ixz="-1.48027222730657E-16"
+        iyy="0.000100217612079357"
+        iyz="-1.83930529463816E-17"
+        izz="0.000810089171205402" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/long_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/long_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="long_joint"
+    type="continuous">
+    <origin
+      xyz="-0.1655 0 0"
+      rpy="-1.5708 -0.46639 0" />
+    <parent
+      link="roller_link" />
+    <child
+      link="long_link" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="upper_arm_link">
+    <inertial>
+      <origin
+        xyz="-1.97862783666083E-09 -0.00961112911619533 0.0466842774000057"
+        rpy="0 0 0" />
+      <mass
+        value="0.181539154944239" />
+      <inertia
+        ixx="0.000458934404201413"
+        ixy="-3.57098237497192E-13"
+        ixz="-2.70292573172014E-11"
+        iyy="0.000578512473831839"
+        iyz="1.63820676967824E-06"
+        izz="0.000132061884125478" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/upper_arm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/upper_arm_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="upper_arm_joint"
+    type="fixed">
+    <origin
+      xyz="-0.12393 0.12301 0.003"
+      rpy="0.46705 -1.5708 0" />
+    <parent
+      link="long_link" />
+    <child
+      link="upper_arm_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="head_link">
+    <inertial>
+      <origin
+        xyz="0.164239017035322 0.0665853897421708 0.0427362508840391"
+        rpy="0 0 0" />
+      <mass
+        value="1.08894136797373" />
+      <inertia
+        ixx="0.000898013476005556"
+        ixy="9.69778499944983E-06"
+        ixz="1.35176363908082E-06"
+        iyy="0.00866634537120664"
+        iyz="-7.56506025256906E-07"
+        izz="0.00801156572712451" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/head_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/head_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="head_joint"
+    type="fixed">
+    <origin
+      xyz="-0.042836 0.077429 -0.051146"
+      rpy="-1.5708 -0.46705 -1.5708" />
+    <parent
+      link="upper_arm_link" />
+    <child
+      link="head_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="sled_link">
+    <inertial>
+      <origin
+        xyz="0.265732378442356 0.0401732683982706 -0.000150723192631628"
+        rpy="0 0 0" />
+      <mass
+        value="0.542496534953743" />
+      <inertia
+        ixx="0.000163982792151024"
+        ixy="1.70355011071338E-06"
+        ixz="1.53006130935905E-06"
+        iyy="0.0021331908202792"
+        iyz="1.6419699770382E-08"
+        izz="0.00201455618020118" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/sled_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/sled_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="sled_joint"
+    type="prismatic">
+    <origin
+      xyz="0 0.066487 0.042836"
+      rpy="0 0 0" />
+    <parent
+      link="head_link" />
+    <child
+      link="sled_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="lower_arm_link">
+    <inertial>
+      <origin
+        xyz="-1.97862684960318E-09 -0.00961112911621059 0.0466842774001207"
+        rpy="0 0 0" />
+      <mass
+        value="0.18153915494424" />
+      <inertia
+        ixx="0.000458934404201414"
+        ixy="-3.57098272771841E-13"
+        ixz="-2.70292574215601E-11"
+        iyy="0.00057851247383184"
+        iyz="1.63820676967815E-06"
+        izz="0.000132061884125478" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/lower_arm_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/lower_arm_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lower_arm_join"
+    type="fixed">
+    <origin
+      xyz="-0.12393 0.053006 0.003"
+      rpy="0.46705 -1.5708 0" />
+    <parent
+      link="long_link" />
+    <child
+      link="lower_arm_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="short_link">
+    <inertial>
+      <origin
+        xyz="-3.33066907387547E-16 0.0822993323844468 -0.0029999999999962"
+        rpy="0 0 0" />
+      <mass
+        value="0.0886392328773929" />
+      <inertia
+        ixx="0.000213865686057714"
+        ixy="5.23466361403158E-19"
+        ixz="-1.4699962503473E-21"
+        iyy="5.60889659603931E-06"
+        iyz="-2.30724283115387E-19"
+        izz="0.000217614515979222" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/short_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://simple_psm/meshes/visual/short_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="short_joint"
+    type="continuous">
+    <origin
+      xyz="-0.2655 0 0"
+      rpy="-1.5708 0.7854 3.1416" />
+    <parent
+      link="roller_link" />
+    <child
+      link="short_link" />
+    <axis
+      xyz="0 0 -1" />
+  </joint>
+</robot>
