@@ -28,7 +28,6 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'joint_state_publisher_cli = simple_mtm.joint_state_publisher_cli:main',  # Add this line
         ],
     },
 )
