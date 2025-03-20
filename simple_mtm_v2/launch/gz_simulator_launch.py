@@ -18,7 +18,7 @@ def generate_launch_description():
     urdf_file= LaunchConfiguration('urdf_file')
     # Check if we're told to use sim time
     use_sim_time = LaunchConfiguration('use_sim_time')
-    bringup_dir = get_package_share_directory('simple_mtm')
+    bringup_dir = get_package_share_directory('simple_mtm_v2')
     world = os.path.join(bringup_dir , "world", "depot.sdf")
     sdf_file  =  os.path.join(bringup_dir, 'urdf', 'robot.sdf')
     with open(sdf_file, 'r') as infp:

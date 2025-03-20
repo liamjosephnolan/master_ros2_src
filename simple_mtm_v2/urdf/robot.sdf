@@ -18,7 +18,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/base_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/base_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -27,7 +27,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/base_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/base_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -67,7 +67,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_J1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_J1_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -76,7 +76,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_J1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_J1_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -116,7 +116,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_J2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_J2_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -125,7 +125,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_J2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_J2_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -165,7 +165,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_J3_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_J3_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -174,7 +174,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_J3_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_J3_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -214,7 +214,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_G3_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_G3_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -223,7 +223,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_G3_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_G3_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -263,7 +263,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_G2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_G2_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -272,7 +272,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_G2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_G2_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -312,7 +312,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_G1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_G1_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -321,7 +321,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_G1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_G1_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -361,7 +361,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_lever_1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_lever_1_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -370,7 +370,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_lever_1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_lever_1_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -410,7 +410,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_lever_2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_lever_2_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -419,7 +419,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/left_lever_2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/left_lever_2_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -459,7 +459,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_J1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_J1_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -468,7 +468,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_J1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_J1_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -508,7 +508,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_J2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_J2_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -517,7 +517,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_J2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_J2_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -557,7 +557,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_J3_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_J3_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -566,7 +566,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_J3_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_J3_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -606,7 +606,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_G3_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_G3_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -615,7 +615,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_G3_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_G3_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -655,7 +655,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_G2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_G2_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -664,7 +664,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_G2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_G2_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -704,7 +704,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_G1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_G1_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -713,7 +713,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_G1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_G1_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -753,7 +753,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_lever_1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_lever_1_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -762,7 +762,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_lever_1_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_lever_1_link.STL</uri>
           </mesh>
         </geometry>
       </visual>
@@ -802,7 +802,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_lever_2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_lever_2_link.STL</uri>
           </mesh>
         </geometry>
       </collision>
@@ -811,7 +811,7 @@
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
-            <uri>package://simple_mtm/meshes/visual/right_lever_2_link.STL</uri>
+            <uri>package://simple_mtm_v2/meshes/visual/right_lever_2_link.STL</uri>
           </mesh>
         </geometry>
       </visual>

@@ -1,7 +1,7 @@
 from setuptools import setup
 from glob import glob
 
-package_name = 'simple_mtm'
+package_name = 'simple_mtm_v2'
 
 setup(
     name=package_name,
