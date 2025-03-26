@@ -1,0 +1,444 @@
+<sdf version="1.7">
+  <model name="simple_mtm_v10">
+    <link name="base_link">
+      <inertial>
+        <pose>0 0.033194 0.12112 0 -0 0</pose>
+        <mass>1.10121</mass>
+        <inertia>
+          <ixx>0.00778947</ixx>
+          <ixy>-1.5509e-14</ixy>
+          <ixz>-7.15589e-15</ixz>
+          <iyy>0.00613139</iyy>
+          <iyz>-6.01985e-07</iyz>
+          <izz>0.00283497</izz>
+        </inertia>
+      </inertial>
+      <collision name="base_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="base_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="right_J1_joint" type="revolute">
+      <pose relative_to="base_link">0 0.217 0.285 -1.5708 0 0</pose>
+      <parent>base_link</parent>
+      <child>right_J1_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="right_J1_link">
+      <pose relative_to="right_J1_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.027247 -0.004312 0.013618 0 -0 0</pose>
+        <mass>0.217265</mass>
+        <inertia>
+          <ixx>8.82897e-05</ixx>
+          <ixy>-5.23748e-06</ixy>
+          <ixz>4.84619e-07</ixz>
+          <iyy>9.88338e-05</iyy>
+          <iyz>3.16056e-07</iyz>
+          <izz>0.000161818</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_J1_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_J1_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="right_J1_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_J1_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="right_J2_joint" type="revolute">
+      <pose relative_to="right_J1_link">0.035 0.0151 0.02 3.14159 -0 0</pose>
+      <parent>right_J1_link</parent>
+      <child>right_J2_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="right_J2_link">
+      <pose relative_to="right_J2_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.123474 0.0151 0.008922 0 -0 0</pose>
+        <mass>0.0284426</mass>
+        <inertia>
+          <ixx>2.23414e-06</ixx>
+          <ixy>-3.63778e-11</ixy>
+          <ixz>-8.63056e-08</ixz>
+          <iyy>2.11947e-05</iyy>
+          <iyz>1.95087e-13</iyz>
+          <izz>2.1832e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_J2_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_J2_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="right_J2_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_J2_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="right_J3_joint" type="revolute">
+      <pose relative_to="right_J2_link">0.2275 0.0151 0.0195 1.5708 0 -1.5708</pose>
+      <parent>right_J2_link</parent>
+      <child>right_J3_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="right_J3_link">
+      <pose relative_to="right_J3_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.169855 -0.003059 0.000145 0 -0 0</pose>
+        <mass>0.0380699</mass>
+        <inertia>
+          <ixx>3.57015e-06</ixx>
+          <ixy>5.77797e-08</ixy>
+          <ixz>-8.33816e-09</ixz>
+          <iyy>2.5059e-05</iyy>
+          <iyz>-4.10119e-09</iyz>
+          <izz>2.32459e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_J3_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_J3_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="right_J3_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_J3_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="right_G3_joint" type="revolute">
+      <pose relative_to="right_J3_link">0.1925 0.0097 0 0 1.5708 0</pose>
+      <parent>right_J3_link</parent>
+      <child>right_G3_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="right_G3_link">
+      <pose relative_to="right_G3_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.000538 -0.030714 0.039931 0 -0 0</pose>
+        <mass>0.0139115</mass>
+        <inertia>
+          <ixx>2.05714e-06</ixx>
+          <ixy>1.1892e-08</ixy>
+          <ixz>1.26103e-08</ixz>
+          <iyy>3.24886e-06</iyy>
+          <iyz>8.79998e-09</iyz>
+          <izz>2.08516e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_G3_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_G3_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="right_G3_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_G3_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="right_G2_joint" type="revolute">
+      <pose relative_to="right_G3_link">-0.013982 0.001298 0.077234 -3.14159 0.364175 -3.14159</pose>
+      <parent>right_G3_link</parent>
+      <child>right_G2_link</child>
+      <axis>
+        <xyz>0.356178 0 0.934418</xyz>
+        <limit>
+          <effort>0</effort>
+          <velocity>0</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="right_G2_link">
+      <pose relative_to="right_G2_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>-0.000194 -0.034006 0.038747 0 -0 0</pose>
+        <mass>0.000175395</mass>
+        <inertia>
+          <ixx>6.00806e-09</ixx>
+          <ixy>1.19072e-11</ixy>
+          <ixz>-1.77273e-09</ixz>
+          <iyy>7.79465e-09</iyy>
+          <iyz>3.12379e-11</iyz>
+          <izz>2.03311e-09</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_G2_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_G2_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="right_G2_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_G2_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="right_G1_joint" type="revolute">
+      <pose relative_to="right_G2_link">0 0 0 0 -0 0</pose>
+      <parent>right_G2_link</parent>
+      <child>right_G1_link</child>
+      <axis>
+        <xyz>0.934418 0 -0.356178</xyz>
+        <limit>
+          <effort>0</effort>
+          <velocity>0</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="right_G1_link">
+      <pose relative_to="right_G1_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.000187 -0.119856 0.039745 0 -0 0</pose>
+        <mass>0.00625622</mass>
+        <inertia>
+          <ixx>1.27666e-05</ixx>
+          <ixy>-3.81984e-10</ixy>
+          <ixz>1.82291e-09</ixz>
+          <iyy>1.14531e-07</iyy>
+          <iyz>-1.08584e-09</iyz>
+          <izz>1.27722e-05</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_G1_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_G1_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="right_G1_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_G1_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="right_lever_1_joint" type="revolute">
+      <pose relative_to="right_G1_link">-0.000578 0.00496 0.077132 -3.12182 -7.4e-05 -3.13406</pose>
+      <parent>right_G1_link</parent>
+      <child>right_lever_1_link</child>
+      <axis>
+        <xyz>0.934418 0 -0.356178</xyz>
+        <limit>
+          <effort>0</effort>
+          <velocity>0</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="right_lever_1_link">
+      <pose relative_to="right_lever_1_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.005108 -0.088945 0.052909 0 -0 0</pose>
+        <mass>0.00204075</mass>
+        <inertia>
+          <ixx>7.29184e-07</ixx>
+          <ixy>-6.03031e-08</ixy>
+          <ixz>-1.1942e-08</ixz>
+          <iyy>6.47742e-08</iyy>
+          <iyz>-1.39762e-07</iyz>
+          <izz>7.10623e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_lever_1_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_lever_1_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="right_lever_1_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_lever_1_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <joint name="right_lever_2_joint" type="revolute">
+      <pose relative_to="right_G1_link">0.000368 0.00447 0.000825 0.00687 -0 -0.002619</pose>
+      <parent>right_G1_link</parent>
+      <child>right_lever_2_link</child>
+      <axis>
+        <xyz>-0.934418 0 0.356178</xyz>
+        <limit>
+          <effort>0</effort>
+          <velocity>0</velocity>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name="right_lever_2_link">
+      <pose relative_to="right_lever_2_joint">0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0.005108 -0.088945 0.052909 0 -0 0</pose>
+        <mass>0.00204075</mass>
+        <inertia>
+          <ixx>7.29184e-07</ixx>
+          <ixy>-6.03031e-08</ixy>
+          <ixz>-1.1942e-08</ixz>
+          <iyy>6.47742e-08</iyy>
+          <iyz>-1.39762e-07</iyz>
+          <izz>7.10623e-07</izz>
+        </inertia>
+      </inertial>
+      <collision name="right_lever_2_link_collision">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_lever_2_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="right_lever_2_link_visual">
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>package://joint_testing/meshes/visual/right_lever_2_link.STL</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,11 +1,8 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/joint_state.hpp>
 #include <std_msgs/msg/string.hpp>
-#include <tf2_ros/transform_listener.h>
-#include <tf2_ros/buffer.h>
-#include <geometry_msgs/msg/transform_stamped.hpp>
 #include <regex>
-#include <cmath>  // Include cmath for M_PI and conversions
+#include <cmath>  // For M_PI and degree-radian conversion
 
 class JointPublisherNode : public rclcpp::Node
 {
@@ -31,9 +28,9 @@ private:
         if (std::regex_search(msg->data, match, joint_regex) && match.size() == 4)
         {
             // Convert degrees to radians before updating joint values
-            shoulder_joint_ = degToRad(std::stod(match[1].str()));  // joint1 -> shoulder
-            upper_joint_ = degToRad(std::stod(match[2].str()));     // joint2 -> upper
-            lower_joint_ = degToRad(std::stod(match[3].str()));     // joint3 -> lower
+            right_J1_joint_ = degToRad(std::stod(match[1].str()));  // joint1
+            right_J2_joint_ = degToRad(std::stod(match[2].str()));  // joint2
+            right_J3_joint_ = degToRad(std::stod(match[3].str()));  // joint3
 
             publishJointState();
         }
@@ -47,8 +44,16 @@ private:
     {
         auto joint_state = sensor_msgs::msg::JointState();
         joint_state.header.stamp = this->get_clock()->now();
-        joint_state.name = {"shoulder_joint", "upper_joint", "lower_join", "gimbal_joint", "left_lever_joint", "right_lever_joint"};
-        joint_state.position = {shoulder_joint_, upper_joint_, lower_joint_, gimbal_joint_, left_lever_joint_, right_lever_joint_};
+        joint_state.name = {
+            "right_J1_joint", "right_J2_joint", "right_J3_joint",
+            "right_G3_joint", "right_G2_joint", "right_G1_joint",
+            "right_G0_1_joint", "right_G0_2_joint"
+        };
+        joint_state.position = {
+            right_J1_joint_, right_J2_joint_, right_J3_joint_,
+            right_G3_joint_, right_G2_joint_, right_G1_joint_,
+            right_G0_1_joint_, right_G0_2_joint_
+        };
 
         joint_state_publisher_->publish(joint_state);
     }
@@ -60,12 +65,14 @@ private:
     }
 
     // Joint position variables
-    double shoulder_joint_ = 0.0;
-    double upper_joint_ = 0.0;
-    double lower_joint_ = 0.0;
-    double gimbal_joint_ = 0.0;
-    double left_lever_joint_ = 0.0;
-    double right_lever_joint_ = 0.0;
+    double right_J1_joint_ = 0.0;
+    double right_J2_joint_ = 0.0;
+    double right_J3_joint_ = 0.0;
+    double right_G3_joint_ = 0.0;
+    double right_G2_joint_ = 0.0;
+    double right_G1_joint_ = 0.0;
+    double right_G0_1_joint_ = 0.0;
+    double right_G0_2_joint_ = 0.0;
 
     // ROS 2 objects
     rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state_publisher_;
