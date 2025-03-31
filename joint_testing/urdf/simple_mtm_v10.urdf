@@ -222,16 +222,16 @@
     name="right_G3_link">
     <inertial>
       <origin
-        xyz="-0.000538298034256923 -0.0307137660110574 0.039930624443191"
+        xyz="-0.000538298034257922 0.0205137660110617 6.9375556808679E-05"
         rpy="0 0 0" />
       <mass
         value="0.0139115090394775" />
       <inertia
-        ixx="2.05714095768684E-06"
-        ixy="1.18920441797106E-08"
-        ixz="1.26103314022491E-08"
+        ixx="2.05714095768685E-06"
+        ixy="-1.18920441797095E-08"
+        ixz="-1.2610331402251E-08"
         iyy="3.24885522100954E-06"
-        iyz="8.79998026858796E-09"
+        iyz="8.79998026858828E-09"
         izz="2.08516206561185E-06" />
     </inertial>
     <visual>
@@ -240,7 +240,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://joint_testing/meshes/visual/right_G3_link.STL" />
+          filename="package://mtmv16/meshes/visual/right_G3_link.STL" />
       </geometry>
       <material
         name="">
@@ -254,7 +254,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://joint_testing/meshes/visual/right_G3_link.STL" />
+          filename="package://mtmv16/meshes/visual/right_G3_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -262,35 +262,30 @@
     name="right_G3_joint"
     type="continuous">
     <origin
-      xyz="0.192500000000002 0.00969999999999821 0"
-      rpy="0 1.5707963267949 0" />
+      xyz="0.232499999999994 -0.000500000000001194 0"
+      rpy="3.14159265358979 1.5707963267949 0" />
     <parent
       link="right_J3_link" />
     <child
       link="right_G3_link" />
     <axis
-      xyz="0 1 0" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      xyz="0 -1 0" />
   </joint>
   <link
     name="right_G2_link">
     <inertial>
       <origin
-        xyz="-0.000193564668082624 -0.0340058831715823 0.0387465222468122"
+        xyz="-0.000390964800846688 2.1978008957535E-05 -0.00102567858648792"
         rpy="0 0 0" />
       <mass
-        value="0.000175394578104925" />
+        value="0.000175394578104924" />
       <inertia
         ixx="6.00806245621315E-09"
-        ixy="1.19071568961015E-11"
+        ixy="1.19071568961014E-11"
         ixz="-1.77273008759156E-09"
-        iyy="7.79464906245331E-09"
-        iyz="3.12378910526836E-11"
-        izz="2.03310817422897E-09" />
+        iyy="7.7946490624533E-09"
+        iyz="3.12378910526832E-11"
+        izz="2.03310817422896E-09" />
     </inertial>
     <visual>
       <origin
@@ -298,7 +293,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://joint_testing/meshes/visual/right_G2_link.STL" />
+          filename="package://mtmv16/meshes/visual/right_G2_link.STL" />
       </geometry>
       <material
         name="">
@@ -312,7 +307,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://joint_testing/meshes/visual/right_G2_link.STL" />
+          filename="package://mtmv16/meshes/visual/right_G2_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -320,35 +315,30 @@
     name="right_G2_joint"
     type="continuous">
     <origin
-      xyz="-0.0139815439024298 0.00129786118054417 0.0772341692003624"
-      rpy="-3.14159265358979 0.364174851103282 -3.14159265358979" />
+      xyz="0 0.02253 0"
+      rpy="0 -0.364174851103282 3.14159265358979" />
     <parent
       link="right_G3_link" />
     <child
       link="right_G2_link" />
     <axis
       xyz="0.356178381855326 0 0.934417979439031" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
   </joint>
   <link
     name="right_G1_link">
     <inertial>
       <origin
-        xyz="0.00018689693137236 -0.119856134439348 0.0397448705988263"
+        xyz="-1.05032013917317E-05 -0.0858282732588095 -2.73302344737658E-05"
         rpy="0 0 0" />
       <mass
-        value="0.00625621520567208" />
+        value="0.00625621520567231" />
       <inertia
-        ixx="1.27666098425882E-05"
-        ixy="-3.81984029962047E-10"
-        ixz="1.82290603449966E-09"
-        iyy="1.14531246370276E-07"
-        iyz="-1.08584454873241E-09"
-        izz="1.27722041084183E-05" />
+        ixx="1.27666098425886E-05"
+        ixy="-3.81984029962003E-10"
+        ixz="1.82290603449923E-09"
+        iyy="1.14531246370279E-07"
+        iyz="-1.08584454872237E-09"
+        izz="1.27722041084186E-05" />
     </inertial>
     <visual>
       <origin
@@ -356,7 +346,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://joint_testing/meshes/visual/right_G1_link.STL" />
+          filename="package://mtmv16/meshes/visual/right_G1_link.STL" />
       </geometry>
       <material
         name="">
@@ -370,7 +360,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://joint_testing/meshes/visual/right_G1_link.STL" />
+          filename="package://mtmv16/meshes/visual/right_G1_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -386,27 +376,22 @@
       link="right_G1_link" />
     <axis
       xyz="0.934417979439031 0 -0.356178381855326" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
   </joint>
   <link
-    name="right_lever_1_link">
+    name="right_G0_1_link">
     <inertial>
       <origin
-        xyz="0.00510793200874701 -0.0889448703770281 0.0529085638546365"
+        xyz="0.00495725277495454 0.0335829908035101 0.0131185541022454"
         rpy="0 0 0" />
       <mass
-        value="0.00204075415287948" />
+        value="0.00204075415287946" />
       <inertia
-        ixx="7.29183551455903E-07"
-        ixy="-6.03030711122902E-08"
-        ixz="-1.19420109398606E-08"
-        iyy="6.47741964762146E-08"
-        iyz="-1.39761570231975E-07"
-        izz="7.10623170243152E-07" />
+        ixx="7.291835514559E-07"
+        ixy="-6.03030711122909E-08"
+        ixz="-1.19420109398605E-08"
+        iyy="6.47741964762142E-08"
+        iyz="-1.39761570231974E-07"
+        izz="7.10623170243149E-07" />
     </inertial>
     <visual>
       <origin
@@ -414,7 +399,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://joint_testing/meshes/visual/right_lever_1_link.STL" />
+          filename="package://mtmv16/meshes/visual/right_G0_1_link.STL" />
       </geometry>
       <material
         name="">
@@ -428,43 +413,38 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://joint_testing/meshes/visual/right_lever_1_link.STL" />
+          filename="package://mtmv16/meshes/visual/right_G0_1_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="right_lever_1_joint"
+    name="right_G0_1_joint"
     type="continuous">
     <origin
-      xyz="-0.000578106027015302 0.00496024892621399 0.0771324048250518"
-      rpy="-3.12182427052133 -7.44784606204923E-05 -3.13405782561958" />
+      xyz="0 -0.0843 0"
+      rpy="-3.1218 -7.4478E-05 -3.1341" />
     <parent
       link="right_G1_link" />
     <child
-      link="right_lever_1_link" />
+      link="right_G0_1_link" />
     <axis
-      xyz="0.934417979439032 0 -0.356178381855324" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      xyz="0.93442 0 -0.35618" />
   </joint>
   <link
-    name="right_lever_2_link">
+    name="right_G0_2_link">
     <inertial>
       <origin
-        xyz="0.00510793196677284 -0.0889448706223261 0.0529085639711742"
+        xyz="-0.00529617375766236 0.0331696096785515 -0.0140076982971603"
         rpy="0 0 0" />
       <mass
-        value="0.00204075409890077" />
+        value="0.00204075409890075" />
       <inertia
-        ixx="7.2918356031614E-07"
-        ixy="-6.0303075402171E-08"
-        ixz="-1.19420115546858E-08"
-        iyy="6.47741938421055E-08"
-        iyz="-1.39761574634627E-07"
-        izz="7.10623180129961E-07" />
+        ixx="7.27894302650053E-07"
+        ixy="6.66372557371623E-08"
+        ixz="-1.51382121210434E-08"
+        iyy="7.39602915064872E-08"
+        iyz="1.56605359477286E-07"
+        izz="7.02726340131672E-07" />
     </inertial>
     <visual>
       <origin
@@ -472,7 +452,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://joint_testing/meshes/visual/right_lever_2_link.STL" />
+          filename="package://mtmv16/meshes/visual/right_G0_2_link.STL" />
       </geometry>
       <material
         name="">
@@ -486,26 +466,21 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://joint_testing/meshes/visual/right_lever_2_link.STL" />
+          filename="package://mtmv16/meshes/visual/right_G0_2_link.STL" />
       </geometry>
     </collision>
   </link>
   <joint
-    name="right_lever_2_joint"
+    name="right_G0_2_link"
     type="continuous">
     <origin
-      xyz="0.00036791989843285 0.00447042270834766 0.000824842222483302"
-      rpy="0.00686960114312612 0 -0.00261851443835586" />
+      xyz="0 -0.0843 0"
+      rpy="-3.1218 -7.4478E-05 -3.1341" />
     <parent
       link="right_G1_link" />
     <child
-      link="right_lever_2_link" />
+      link="right_G0_2_link" />
     <axis
-      xyz="-0.934417979439032 0 0.356178381855325" />
-    <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      xyz="0.93442 0 -0.35618" />
   </joint>
 </robot>
