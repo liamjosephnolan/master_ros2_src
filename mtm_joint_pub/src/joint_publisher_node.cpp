@@ -6,6 +6,10 @@
 #include <tf2/time.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
+float x_offset = 0.2625;
+float y_offset = 0.24053;
+float z_offset = 0.0525;
+
 class JointPublisherNode : public rclcpp::Node
 {
 public:
@@ -97,9 +101,9 @@ private:
             geometry_msgs::msg::PoseStamped target_pose;
             target_pose.header.stamp = now;
             target_pose.header.frame_id = "base_link";
-            target_pose.pose.position.x = transform_stamped.transform.translation.x;
-            target_pose.pose.position.y = transform_stamped.transform.translation.y;
-            target_pose.pose.position.z = transform_stamped.transform.translation.z;
+            target_pose.pose.position.x = transform_stamped.transform.translation.x - x_offset;
+            target_pose.pose.position.y = transform_stamped.transform.translation.y - y_offset;
+            target_pose.pose.position.z = transform_stamped.transform.translation.z - z_offset;
             target_pose.pose.orientation = transform_stamped.transform.rotation;
 
             target_pose_publisher_->publish(target_pose);
