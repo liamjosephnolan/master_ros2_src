@@ -1,48 +1,76 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/joint_state.hpp>
-#include <std_msgs/msg/string.hpp>
-#include <regex>
-#include <cmath>  // For M_PI and degree-radian conversion
+#include <geometry_msgs/msg/pose_stamped.hpp>
+#include <tf2_ros/transform_listener.h>
+#include <tf2_ros/buffer.h>
+#include <tf2/time.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
 class JointPublisherNode : public rclcpp::Node
 {
 public:
-    JointPublisherNode() : Node("joint_publisher_node")
-    {   
+    JointPublisherNode()
+        : Node("joint_publisher_node"),
+          tf_buffer_(this->get_clock()),
+          tf_listener_(tf_buffer_)
+    {
+        // Publishers
         joint_state_publisher_ = this->create_publisher<sensor_msgs::msg::JointState>("joint_states", 10);
+        target_pose_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/target_pose", 10);
 
-        joint_state_subscriber_ = this->create_subscription<std_msgs::msg::String>(
-            "/mtm_joint_states", 10, 
-            std::bind(&JointPublisherNode::jointStateCallback, this, std::placeholders::_1)
+        // Subscriber for MTM joint states
+        mtm_joint_subscriber_ = this->create_subscription<sensor_msgs::msg::JointState>(
+            "/mtm_joint_states", 10,
+            std::bind(&JointPublisherNode::mtmJointStateCallback, this, std::placeholders::_1)
         );
 
-        RCLCPP_INFO(this->get_logger(), "Listening to /mtm_joint_states and publishing joint_states.");
+        // Timer to regularly publish target pose
+        timer_ = this->create_wall_timer(
+            std::chrono::milliseconds(100),
+            std::bind(&JointPublisherNode::publishTargetPose, this)
+        );
+
+        RCLCPP_INFO(this->get_logger(), "Node initialized: publishing joint states and /target_pose.");
     }
 
 private:
-    void jointStateCallback(const std_msgs::msg::String::SharedPtr msg)
+    // Helper function to convert degrees to radians
+    double degToRad(double degrees)
     {
-        std::regex joint_regex(R"(joint1_angle:\s*([\d\.\-]+),\s*joint2_angle:\s*([\d\.\-]+),\s*joint3_angle:\s*([\d\.\-]+))");
-        std::smatch match;
+        return degrees * M_PI / 180.0;
+    }
 
-        if (std::regex_search(msg->data, match, joint_regex) && match.size() == 4)
-        {
-            // Convert degrees to radians before updating joint values
-            right_J1_joint_ = degToRad(std::stod(match[1].str()));  // joint1
-            right_J2_joint_ = degToRad(std::stod(match[2].str()));  // joint2
-            right_J3_joint_ = degToRad(std::stod(match[3].str()));  // joint3
+    // Callback for MTM joint states
+    void mtmJointStateCallback(const sensor_msgs::msg::JointState::SharedPtr msg)
+    {
+        for (size_t i = 0; i < msg->name.size(); ++i) {
+            const std::string& joint_name = msg->name[i];
+            double position = msg->position[i];
 
-            publishJointState();
+            if (joint_name == "right_joint_1") {
+                right_J1_joint_ = degToRad(position);
+            } else if (joint_name == "right_joint_2") {
+                right_J2_joint_ = degToRad(position);
+            } else if (joint_name == "right_joint_3") {
+                right_J3_joint_ = degToRad(position);
+            } else if (joint_name == "right_gimbal_3") {
+                right_G3_joint_ = degToRad(position);
+            } else if (joint_name == "right_gimbal_2") {
+                right_G2_joint_ = degToRad(position);
+            } else if (joint_name == "right_gimbal_1") {
+                right_G1_joint_ = degToRad(position);
+            } else if (joint_name == "right_gimbal_0") {
+                right_G0_1_joint_ = degToRad(position);
+                right_G0_2_joint_ = degToRad(position);
+            }
         }
-        else
-        {
-            RCLCPP_WARN(this->get_logger(), "Failed to parse joint states: %s", msg->data.c_str());
-        }
+
+        publishJointState();
     }
 
     void publishJointState()
     {
-        auto joint_state = sensor_msgs::msg::JointState();
+        sensor_msgs::msg::JointState joint_state;
         joint_state.header.stamp = this->get_clock()->now();
         joint_state.name = {
             "right_J1_joint", "right_J2_joint", "right_J3_joint",
@@ -58,13 +86,32 @@ private:
         joint_state_publisher_->publish(joint_state);
     }
 
-    // Helper function: Convert degrees to radians
-    double degToRad(double degrees)
+    void publishTargetPose()
     {
-        return degrees * M_PI / 180.0;
-    }
+    rclcpp::Time now = this->get_clock()->now();
 
-    // Joint position variables
+    if (tf_buffer_.canTransform("base_link", "right_G1_link", tf2::TimePointZero, tf2::durationFromSec(1.0))) {
+        try {
+            auto transform_stamped = tf_buffer_.lookupTransform("base_link", "right_G1_link", tf2::TimePointZero);
+
+            geometry_msgs::msg::PoseStamped target_pose;
+            target_pose.header.stamp = now;
+            target_pose.header.frame_id = "base_link";
+            target_pose.pose.position.x = transform_stamped.transform.translation.x;
+            target_pose.pose.position.y = transform_stamped.transform.translation.y;
+            target_pose.pose.position.z = transform_stamped.transform.translation.z;
+            target_pose.pose.orientation = transform_stamped.transform.rotation;
+
+            target_pose_publisher_->publish(target_pose);
+        } catch (const tf2::TransformException &ex) {
+            RCLCPP_WARN(this->get_logger(), "Transform lookup failed: %s", ex.what());
+        }
+    } else {
+        RCLCPP_WARN_THROTTLE(this->get_logger(), *this->get_clock(), 2000,
+                             "Transform from 'right_G1_link' to 'base_link' not yet available.");
+    }
+}
+    // Joint positions
     double right_J1_joint_ = 0.0;
     double right_J2_joint_ = 0.0;
     double right_J3_joint_ = 0.0;
@@ -74,9 +121,15 @@ private:
     double right_G0_1_joint_ = 0.0;
     double right_G0_2_joint_ = 0.0;
 
-    // ROS 2 objects
+    // ROS 2 communication objects
     rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state_publisher_;
-    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr joint_state_subscriber_;
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr target_pose_publisher_;
+    rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr mtm_joint_subscriber_;
+    rclcpp::TimerBase::SharedPtr timer_;
+
+    // TF2
+    tf2_ros::Buffer tf_buffer_;
+    tf2_ros::TransformListener tf_listener_;
 };
 
 int main(int argc, char **argv)
