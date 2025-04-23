@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>PSMTelemetry</name>
+  <version>0.0.0</version>
+  <description>Custom telemetry messages for PSM robot</description>
+
+  <maintainer email="you@example.com">Your Name</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <build_depend>rosidl_default_generators</build_depend>
+  <depend>std_msgs</depend>
+  <depend>builtin_interfaces</depend>
+
+  <exec_depend>rosidl_default_runtime</exec_depend>
+</package>
