@@ -1,5 +1,3 @@
-std_msgs/Header header
-
 # Encoder positions (e.g. ticks)
 int32 roll_encoder
 int32 pitch_encoder
