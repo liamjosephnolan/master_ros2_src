@@ -55,6 +55,12 @@ def generate_launch_description():
         name='robot_state_publisher',
         output='screen',
         #parameters=[{'use_sim_time': use_sim_time}],
+        parameters=[
+            # (optional) enable sim time if you use it:
+            # {'use_sim_time': use_sim_time},
+            # **This is the key line:**:w
+            {'publish_frequency': 100.0},
+        ],
         arguments=[urdf_file])
     
     start_joint_state_publisher_cmd = Node(
