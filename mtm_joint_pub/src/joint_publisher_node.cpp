@@ -1,6 +1,6 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/joint_state.hpp>
-#include <geometry_msgs/msg/point_stamped.hpp> // Use PointStamped instead of PoseStamped
+#include <geometry_msgs/msg/pose_stamped.hpp>
 #include <tf2_ros/transform_listener.h>
 #include <tf2_ros/buffer.h>
 #include <tf2/time.h>
@@ -20,7 +20,7 @@ public:
     {
         // Publishers
         joint_state_publisher_ = this->create_publisher<sensor_msgs::msg::JointState>("joint_states", 100);
-        target_pose_publisher_ = this->create_publisher<geometry_msgs::msg::PointStamped>("/target_pose", 100);
+        target_pose_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/model_pose", 100); // Updated topic name
 
         // Subscriber for MTM joint states
         mtm_joint_subscriber_ = this->create_subscription<sensor_msgs::msg::JointState>(
@@ -34,7 +34,7 @@ public:
             std::bind(&JointPublisherNode::publishTargetPose, this)
         );
 
-        RCLCPP_INFO(this->get_logger(), "Node initialized: publishing joint states and /target_pose.");
+        RCLCPP_INFO(this->get_logger(), "Node initialized: publishing joint states and /model_pose.");
     }
 
 private:
@@ -98,14 +98,15 @@ private:
             try {
                 auto transform_stamped = tf_buffer_.lookupTransform("base_link", "right_G1_link", tf2::TimePointZero);
 
-                geometry_msgs::msg::PointStamped target_point;
-                target_point.header.stamp = now;
-                target_point.header.frame_id = "base_link";
-                target_point.point.x = transform_stamped.transform.translation.x - x_offset;
-                target_point.point.y = transform_stamped.transform.translation.y - y_offset;
-                target_point.point.z = transform_stamped.transform.translation.z - z_offset;
+                geometry_msgs::msg::PoseStamped target_pose;
+                target_pose.header.stamp = now;
+                target_pose.header.frame_id = "base_link";
+                target_pose.pose.position.x = transform_stamped.transform.translation.x - x_offset;
+                target_pose.pose.position.y = transform_stamped.transform.translation.y - y_offset;
+                target_pose.pose.position.z = transform_stamped.transform.translation.z - z_offset;
+                target_pose.pose.orientation = transform_stamped.transform.rotation;
 
-                target_pose_publisher_->publish(target_point);
+                target_pose_publisher_->publish(target_pose);
             } catch (const tf2::TransformException &ex) {
                 RCLCPP_WARN(this->get_logger(), "Transform lookup failed: %s", ex.what());
             }
@@ -127,7 +128,7 @@ private:
 
     // ROS 2 communication objects
     rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state_publisher_;
-    rclcpp::Publisher<geometry_msgs::msg::PointStamped>::SharedPtr target_pose_publisher_; // Updated to PointStamped
+    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr target_pose_publisher_; // Updated topic name
     rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr mtm_joint_subscriber_;
     rclcpp::TimerBase::SharedPtr timer_;
 
