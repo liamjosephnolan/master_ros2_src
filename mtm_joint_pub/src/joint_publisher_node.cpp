@@ -1,11 +1,16 @@
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/joint_state.hpp>
+// No longer need PoseStamped for the output, but TF2 needs it for transforms
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <tf2_ros/transform_listener.h>
 #include <tf2_ros/buffer.h>
 #include <tf2/time.h>
+// This header is still needed for TF2 to work with geometry_msgs
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#include <vector>
+#include <string>
 
+// Your offsets remain the same
 float x_offset = 0.2625;
 float y_offset = 0.24053;
 float z_offset = 0.0525;
@@ -18,9 +23,11 @@ public:
           tf_buffer_(this->get_clock()),
           tf_listener_(tf_buffer_)
     {
-        // Publishers
+        // Publisher for robot joint angles
         joint_state_publisher_ = this->create_publisher<sensor_msgs::msg::JointState>("joint_states", 100);
-        target_pose_publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("/model_pose", 100); // Updated topic name
+
+        // --- CHANGE 1: The publisher for /model_pose now uses sensor_msgs::msg::JointState ---
+        target_pose_publisher_ = this->create_publisher<sensor_msgs::msg::JointState>("/model_pose", 10);
 
         // Subscriber for MTM joint states
         mtm_joint_subscriber_ = this->create_subscription<sensor_msgs::msg::JointState>(
@@ -28,13 +35,13 @@ public:
             std::bind(&JointPublisherNode::mtmJointStateCallback, this, std::placeholders::_1)
         );
 
-        // Timer to regularly publish target pose
+        // --- CHANGE 2 (RECOMMENDED): Timer rate adjusted for stability (e.g., 50 Hz) ---
         timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(10),
-            std::bind(&JointPublisherNode::publishTargetPose, this)
+            std::chrono::milliseconds(1), // 20ms period = 50 Hz rate. A much safer rate.
+            std::bind(&JointPublisherNode::publishAll, this)
         );
 
-        RCLCPP_INFO(this->get_logger(), "Node initialized: publishing joint states and /model_pose.");
+        RCLCPP_INFO(this->get_logger(), "Node initialized: publishing joint_states and /model_pose at a controlled rate.");
     }
 
 private:
@@ -47,6 +54,8 @@ private:
     // Callback for MTM joint states
     void mtmJointStateCallback(const sensor_msgs::msg::JointState::SharedPtr msg)
     {
+        // This callback now ONLY updates the internal state variables.
+        // It does not publish anything directly, preventing message flooding.
         for (size_t i = 0; i < msg->name.size(); ++i) {
             const std::string& joint_name = msg->name[i];
             double position = msg->position[i];
@@ -68,11 +77,10 @@ private:
                 right_G0_2_joint_ = degToRad(position);
             }
         }
-
-        publishJointState();
+        // The call to publishJointState() is removed from here.
     }
 
-    void publishJointState()
+    void publishRobotJoints()
     {
         sensor_msgs::msg::JointState joint_state;
         joint_state.header.stamp = this->get_clock()->now();
@@ -90,23 +98,41 @@ private:
         joint_state_publisher_->publish(joint_state);
     }
 
-    void publishTargetPose()
+    // --- CHANGE 3: The main publishing logic is now in a single timer callback ---
+    void publishAll()
     {
+        // First, publish the robot's joint angles at the controlled rate.
+        publishRobotJoints();
+
+        // Second, get the transform and publish the cartesian pose in the new format.
         rclcpp::Time now = this->get_clock()->now();
 
-        if (tf_buffer_.canTransform("base_link", "right_G1_link", tf2::TimePointZero, tf2::durationFromSec(1.0))) {
+        if (tf_buffer_.canTransform("base_link", "right_G1_link", tf2::TimePointZero, tf2::durationFromSec(0.05))) {
             try {
                 auto transform_stamped = tf_buffer_.lookupTransform("base_link", "right_G1_link", tf2::TimePointZero);
 
-                geometry_msgs::msg::PoseStamped target_pose;
-                target_pose.header.stamp = now;
-                target_pose.header.frame_id = "base_link";
-                target_pose.pose.position.x = transform_stamped.transform.translation.x - x_offset;
-                target_pose.pose.position.y = transform_stamped.transform.translation.y - y_offset;
-                target_pose.pose.position.z = transform_stamped.transform.translation.z - z_offset;
-                target_pose.pose.orientation = transform_stamped.transform.rotation;
+                // --- CHANGE 4: Create a JointState message for the cartesian pose ---
+                sensor_msgs::msg::JointState cartesian_pose_msg;
+                cartesian_pose_msg.header.stamp = now;
+                cartesian_pose_msg.header.frame_id = ""; // Per your example format
 
-                target_pose_publisher_->publish(target_pose);
+                // Set the names for the cartesian coordinates
+                cartesian_pose_msg.name = {"x", "y", "z"};
+
+                // Calculate and set the position values after applying offsets
+                cartesian_pose_msg.position = {
+                    transform_stamped.transform.translation.x - x_offset,
+                    transform_stamped.transform.translation.y - y_offset,
+                    transform_stamped.transform.translation.z - z_offset
+                };
+
+                // Fill velocity and effort with zeros as per your format
+                cartesian_pose_msg.velocity = {0.0, 0.0, 0.0};
+                cartesian_pose_msg.effort = {0.0, 0.0, 0.0};
+
+                // Publish the newly formatted message
+                target_pose_publisher_->publish(cartesian_pose_msg);
+
             } catch (const tf2::TransformException &ex) {
                 RCLCPP_WARN(this->get_logger(), "Transform lookup failed: %s", ex.what());
             }
@@ -128,7 +154,8 @@ private:
 
     // ROS 2 communication objects
     rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state_publisher_;
-    rclcpp::Publisher<geometry_msgs::msg::PoseStamped>::SharedPtr target_pose_publisher_; // Updated topic name
+    // --- CHANGE 5: The member variable type is updated ---
+    rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr target_pose_publisher_;
     rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr mtm_joint_subscriber_;
     rclcpp::TimerBase::SharedPtr timer_;
 
