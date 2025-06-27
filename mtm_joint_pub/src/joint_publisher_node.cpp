@@ -27,7 +27,7 @@ public:
         joint_state_publisher_ = this->create_publisher<sensor_msgs::msg::JointState>("joint_states", 100);
 
         // --- CHANGE 1: The publisher for /model_pose now uses sensor_msgs::msg::JointState ---
-        target_pose_publisher_ = this->create_publisher<sensor_msgs::msg::JointState>("/model_pose", 10);
+        target_pose_publisher_ = this->create_publisher<sensor_msgs::msg::JointState>("/model_pose", 500);
 
         // Subscriber for MTM joint states
         mtm_joint_subscriber_ = this->create_subscription<sensor_msgs::msg::JointState>(
@@ -37,7 +37,7 @@ public:
 
         // --- CHANGE 2 (RECOMMENDED): Timer rate adjusted for stability (e.g., 50 Hz) ---
         timer_ = this->create_wall_timer(
-            std::chrono::milliseconds(1), // 20ms period = 50 Hz rate. A much safer rate.
+            std::chrono::microseconds(2000), // 20ms period = 50 Hz rate. A much safer rate.
             std::bind(&JointPublisherNode::publishAll, this)
         );
 
